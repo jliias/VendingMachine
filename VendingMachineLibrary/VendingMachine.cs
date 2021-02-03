@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VendingMachineLibrary
 {
-    enum ItemType { food, drink, weapon };
+    public enum ItemType { food, drink, weapon };
 
     public class VendingMachine
     {
@@ -18,11 +18,13 @@ namespace VendingMachineLibrary
             this.itemList = new List<Item>();
         }
 
+        // Method to add new item to machine
         public void AddItem(Item newItem)
         {
             itemList.Add(newItem);
         }
 
+        // Method for getting list of items
         public List<Item> ListItems()
         {
             if (itemList.Count > 0)
@@ -38,18 +40,18 @@ namespace VendingMachineLibrary
     {
         private string name;
         private int price;
-        public string itemType;
+        private ItemType ItemType;
 
-        public Item(string name, int price, string itemType)
+        public Item(string name, int price, ItemType itemType)
         {
             this.name = name;
             this.price = price;
-            this.itemType = itemType;
+            this.ItemType = itemType;
         }
 
         public string GetName()
         {
-            return this.name;
+            return this.name.ToString();
         }
 
         public int GetPrice()

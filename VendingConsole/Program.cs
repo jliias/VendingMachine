@@ -17,9 +17,13 @@ namespace VendingConsole
 
             VendingMachine myMachine = new VendingMachine();
 
-            Item bread = new Item("bread", 5, "food");
+            Item bread = new Item("bread", 5, VendingMachineLibrary.ItemType.food);
+            Item beer = new Item("beer", 10, VendingMachineLibrary.ItemType.drink);
+            Item AK47 = new Item("AK-47", 1000, VendingMachineLibrary.ItemType.weapon);
 
             myMachine.AddItem(bread);
+            myMachine.AddItem(beer);
+            myMachine.AddItem(AK47);
 
             testItems = myMachine.ListItems();
 
