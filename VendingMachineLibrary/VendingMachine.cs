@@ -18,7 +18,7 @@ namespace VendingMachineLibrary
             this.itemList = new List<Item>();
         }
 
-        // Method to add new item to machine
+        // Method to add new items to machine
         public void AddItem(Item newItem)
         {
             itemList.Add(newItem);
@@ -34,19 +34,45 @@ namespace VendingMachineLibrary
 
             return null;
         }
+
+        public void BuyItem()
+        {
+
+        }
+
+        public void DisplayAllItems()
+        {
+            Console.WriteLine($"\n\n{"#".PadRight(5)} {"Stock"} { "Product".PadRight(47) } { "Price".PadLeft(7)}");
+            foreach (Item kvp in this.itemList)
+            {
+                if (kvp.remaining > 0)
+                {
+                    //string itemNumber = kvp;
+                    string itemsRemaining = kvp.remaining.ToString().PadRight(5);
+                    string productName = kvp.name.PadRight(40);
+                    string price = kvp.price.ToString("C").PadLeft(7);
+                    Console.WriteLine($" {itemsRemaining} {productName} Costs: {price} each");
+                }
+                else
+                {
+                    Console.WriteLine($"{kvp}: {kvp.name} IS SOLD OUT.");
+                }
+            }
+        }
+
     }
 
-    public class Item
+    public abstract class Item
     {
-        private string name;
-        private int price;
-        private ItemType ItemType;
+        public string name;
+        public int price;
+        public int remaining;
 
-        public Item(string name, int price, ItemType itemType)
+        public Item(string name, int price, int remaining)
         {
             this.name = name;
             this.price = price;
-            this.ItemType = itemType;
+            this.remaining = remaining;
         }
 
         public string GetName()
@@ -57,6 +83,49 @@ namespace VendingMachineLibrary
         public int GetPrice()
         {
             return this.price;
+        }
+
+        public bool remoteItem()
+        {
+            if (this.remaining > 0)
+            {
+                this.remaining--;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    public class Food : Item
+    {
+        private float weight;
+
+        public Food(string name, int price, int remaining, float weight) : base(name, price, remaining)
+        {
+            this.weight = weight;
+        }
+    }
+
+    public class Drink : Item
+    {
+        private float healAmount;
+
+        public Drink(string name, int price, int remaining, float healAmount) : base(name, price, remaining)
+        {
+            this.healAmount = healAmount;
+        }
+    }
+
+    public class Weapon : Item
+    {
+        private float damage;
+
+        public Weapon(string name, int price, int remaining, float damage) : base(name, price, remaining)
+        {
+            this.damage = damage;
         }
     }
 }
