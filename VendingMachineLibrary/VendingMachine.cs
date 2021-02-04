@@ -11,21 +11,23 @@ namespace VendingMachineLibrary
     public class VendingMachine
     {
         // list for items that are loaded to vending machine
-        private List<Item> itemList;
+        //private List<Item> itemList;
+        public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
+
 
         public VendingMachine()
         {
-            this.itemList = new List<Item>();
+            //this.itemList = new List<Item>();
         }
 
         // Method to add new items to machine
-        public void AddItem(Item newItem)
+        public void AddItem(string key, Item newItem)
         {
-            itemList.Add(newItem);
+            itemList.Add(key, newItem);
         }
 
         // Method for getting list of items
-        public List<Item> ListItems()
+        public Dictionary<string, Item> ListItems()
         {
             if (itemList.Count > 0)
             {
@@ -40,92 +42,25 @@ namespace VendingMachineLibrary
 
         }
 
-        public void DisplayAllItems()
+        public void ShowItems()
         {
-            Console.WriteLine($"\n\n{"#".PadRight(5)} {"Stock"} { "Product".PadRight(47) } { "Price".PadLeft(7)}");
-            foreach (Item kvp in this.itemList)
+            Console.WriteLine($"{"Pos".PadRight(4)} {"Stock"} { "Product".PadRight(47) } { "Price".PadLeft(7)}");
+            foreach (KeyValuePair<string, Item> kv in this.itemList)
             {
-                if (kvp.remaining > 0)
+                if (kv.Value.remaining > 0)
                 {
-                    //string itemNumber = kvp;
-                    string itemsRemaining = kvp.remaining.ToString().PadRight(5);
-                    string productName = kvp.name.PadRight(40);
-                    string price = kvp.price.ToString("C").PadLeft(7);
-                    Console.WriteLine($" {itemsRemaining} {productName} Costs: {price} each");
+                    string itemNumber = kv.Key.PadRight(5);
+                    string itemsRemaining = kv.Value.remaining.ToString().PadRight(5);
+                    string productName = kv.Value.name.PadRight(40);
+                    string price = kv.Value.price.ToString().PadLeft(7);
+                    Console.WriteLine($" {itemNumber} {itemsRemaining} {productName} {price}");
                 }
                 else
                 {
-                    Console.WriteLine($"{kvp}: {kvp.name} IS SOLD OUT.");
+                    Console.WriteLine($" {kv}: {kv.Value.name} not found.");
                 }
             }
         }
 
-    }
-
-    public abstract class Item
-    {
-        public string name;
-        public int price;
-        public int remaining;
-
-        public Item(string name, int price, int remaining)
-        {
-            this.name = name;
-            this.price = price;
-            this.remaining = remaining;
-        }
-
-        public string GetName()
-        {
-            return this.name.ToString();
-        }
-
-        public int GetPrice()
-        {
-            return this.price;
-        }
-
-        public bool remoteItem()
-        {
-            if (this.remaining > 0)
-            {
-                this.remaining--;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-    public class Food : Item
-    {
-        private float weight;
-
-        public Food(string name, int price, int remaining, float weight) : base(name, price, remaining)
-        {
-            this.weight = weight;
-        }
-    }
-
-    public class Drink : Item
-    {
-        private float healAmount;
-
-        public Drink(string name, int price, int remaining, float healAmount) : base(name, price, remaining)
-        {
-            this.healAmount = healAmount;
-        }
-    }
-
-    public class Weapon : Item
-    {
-        private float damage;
-
-        public Weapon(string name, int price, int remaining, float damage) : base(name, price, remaining)
-        {
-            this.damage = damage;
-        }
     }
 }
