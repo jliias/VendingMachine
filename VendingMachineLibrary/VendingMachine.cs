@@ -14,6 +14,7 @@ namespace VendingMachineLibrary
         //private List<Item> itemList;
         public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
 
+        private Logger myLogger = new Logger();
 
         public VendingMachine()
         {
@@ -22,24 +23,36 @@ namespace VendingMachineLibrary
 
         // Method to add new items to machine
         public void AddItem(string key, Item newItem)
-        {
+        { 
             itemList.Add(key, newItem);
         }
 
         // Method for getting list of items
-        public Dictionary<string, Item> ListItems()
+        //public Dictionary<string, Item> ListItems()
+        //{
+        //    if (itemList.Count > 0)
+        //    {
+        //        return itemList;
+        //    }
+
+        //    return null;
+        //}
+
+        public void BuyItem(string key)
         {
-            if (itemList.Count > 0)
+            // Item can be bought if:
+            // A) it exists in vending machine
+            // B) There are >0 items left
+            // C) User has enough money
+            if (itemList.ContainsKey(key)
+                && itemList[key].RemoveItem())
             {
-                return itemList;
+                this.myLogger.LogEvent("Buying Item: " + itemList[key].name);
+                Console.WriteLine("Item Bought!");
             }
-
-            return null;
-        }
-
-        public void BuyItem()
-        {
-
+            else {
+                Console.WriteLine("No such item!");
+            }
         }
 
         public void ShowItems()
