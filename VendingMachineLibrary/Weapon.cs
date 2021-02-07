@@ -6,7 +6,7 @@ namespace VendingMachineLibrary
     {
         private float damage;
 
-        public Weapon(string name, int price, int remaining, float damage) : base(name, price, remaining)
+        public Weapon(string name, decimal price, int remaining, float damage) : base(name, price, remaining)
         {
             this.damage = damage;
         }

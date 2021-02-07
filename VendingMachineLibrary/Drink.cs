@@ -6,7 +6,7 @@ namespace VendingMachineLibrary
     {
         private float healAmount;
 
-        public Drink(string name, int price, int remaining, float healAmount) : base(name, price, remaining)
+        public Drink(string name, decimal price, int remaining, float healAmount) : base(name, price, remaining)
         {
             this.healAmount = healAmount;
         }

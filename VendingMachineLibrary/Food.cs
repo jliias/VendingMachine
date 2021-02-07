@@ -7,7 +7,7 @@ namespace VendingMachineLibrary
     {
         private float weight;
 
-        public Food(string name, int price, int remaining, float weight) : base(name, price, remaining)
+        public Food(string name, decimal price, int remaining, float weight) : base(name, price, remaining)
         {
             this.weight = weight;
         }

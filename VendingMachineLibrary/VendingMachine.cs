@@ -25,8 +25,17 @@ namespace VendingMachineLibrary
         //  key: item(s) position tag in vending machine user interface
         //  newItem: which item is placed to position defined by key 
         public void AddItem(string key, Item newItem)
-        { 
-            itemList.Add(key, newItem);
+        {
+            // If key already exists, replace slot content with newItem
+            if (itemList.ContainsKey(key))
+            {
+                this.myLogger.Log("Replacing slot " + key + " content!");
+                itemList[key] = newItem;
+            }
+            else
+            {
+                itemList.Add(key, newItem);
+            }
         }
 
         public void BuyItem(string key)

@@ -5,10 +5,10 @@ namespace VendingMachineLibrary
     public abstract class Item
     {
         public string name;
-        public int price;
+        public decimal price;
         public int remaining;
 
-        public Item(string name, int price, int remaining)
+        public Item(string name, decimal price, int remaining)
         {
             this.name = name;
             this.price = price;
@@ -20,7 +20,7 @@ namespace VendingMachineLibrary
             return this.name.ToString();
         }
 
-        public int GetPrice()
+        public decimal GetPrice()
         {
             return this.price;
         }
