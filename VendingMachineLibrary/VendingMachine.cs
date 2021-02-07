@@ -38,27 +38,38 @@ namespace VendingMachineLibrary
             }
         }
 
-        public void BuyItem(string key)
+        public string BuyItem(string key)
         {
             // Item can be bought if these are true:
             // A) it exists in vending machine (contains key)
             // B) There are >0 items left
             // C) User has entered enough money to vm
-            if (itemList.ContainsKey(key)
-                && itemList[key].RemoveItem())
+            if (itemList.ContainsKey(key))
             {
-                this.myLogger.Log("Buying Item: " + itemList[key].name);
-                Console.WriteLine("Item Bought!");
+                string returnString = itemList[key].name;
+
+                if (itemList[key].RemoveItem())
+                {
+                    this.myLogger.Log("Buying Item: " + itemList[key].name);
+                    Console.WriteLine("Item Bought!");
+                    return returnString;
+                }
+                else
+                {
+                    Console.WriteLine("No such item!");
+                    return null;
+                }
             }
-            else {
-                Console.WriteLine("No such item!");
+            else
+            {
+                return null;
             }
         }
-
         // Return list of all items in vending machine
         public Dictionary<string, Item> GetItems()
         {
             return itemList;
         }
+
     }
 }
