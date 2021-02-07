@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VendingMachineLibrary
 {
-    public class Logger
+    public class Logger : ILogger
     {
-        public void LogEvent(string msg)
+        public void Log(string msg)
         {
             DateTime thisTime = DateTime.Now;
             string thisTimeString = thisTime.ToString("dd/MM/yyyy HH:mm:ss");
