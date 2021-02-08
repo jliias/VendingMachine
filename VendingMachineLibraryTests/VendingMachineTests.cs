@@ -21,6 +21,8 @@ namespace VendingMachineLibraryTests
 
             // Place Rye Breads to vm slot A0
             myMachine.AddItem("A0", ryeBread);
+
+            myMachine.moneyHandler.FeedMoney(100m);
         }
 
         [Test]
@@ -49,6 +51,46 @@ namespace VendingMachineLibraryTests
 
             // Check if you are able to get Rye Bread from B0 slot (expected result=false)
             Assert.AreNotEqual("Rye Bread", myMachine.BuyItem("B0"));
+        }
+
+        [Test]
+        public void TryBuyTooExpensiveItem()
+        {
+            // Create AK47 item and add it to vending machine catalog
+            Weapon AK47 = new Weapon("AK47", 1200m, 1, 10f);
+            myMachine.AddItem("P6", AK47);
+
+            Assert.That(null, Is.EqualTo(myMachine.BuyItem("P6")));
+        }
+
+        [Test]
+        public void TryBuyAffordableItem()
+        {
+            myMachine.moneyHandler.FeedMoney(1200m);
+            // Create AK47 item and add it to vending machine catalog
+            Weapon AK47 = new Weapon("AK47", 1200m, 1, 10f);
+            myMachine.AddItem("P6", AK47);
+
+            Assert.That("AK47", Is.EqualTo(myMachine.BuyItem("P6")));
+        }
+
+        [Test]
+        public void AddMoneyToMachine()
+        {
+            decimal moneyBefore = myMachine.moneyHandler.moneyEntered;
+            myMachine.moneyHandler.FeedMoney(100m);
+
+            // Check that amount of money matches
+            Assert.That(moneyBefore + 100m, Is.EqualTo(myMachine.moneyHandler.moneyEntered));
+        }
+
+        [Test]
+        public void RemoveMoneyFromMachine()
+        {
+            decimal moneyBefore = myMachine.moneyHandler.moneyEntered;
+            myMachine.moneyHandler.RemoveMoney(50m);
+
+            Assert.That(moneyBefore - 50m, Is.EqualTo(myMachine.moneyHandler.moneyEntered));
         }
 
 

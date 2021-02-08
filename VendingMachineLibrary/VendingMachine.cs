@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace VendingMachineLibrary
 {
-    public enum ItemType { food, drink, weapon };
+    //public enum ItemType { food, drink, weapon };
 
     public class VendingMachine
     {
         // list for items that are loaded to vending machine
         public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
-        private MoneyHandler moneyHandler;
+        public MoneyHandler moneyHandler { get; }
 
         // Logger instance, use output file "myLog.txt"
         private Logger myLogger = new Logger("myLog.txt");
@@ -55,8 +55,10 @@ namespace VendingMachineLibrary
                 {
                     if (itemList[key].RemoveItem())
                     {
+                        this.myLogger.Log("---------------------------------------------");
                         this.myLogger.Log("Buying Item: " + returnString);
                         this.moneyHandler.RemoveMoney(price);
+                        this.myLogger.Log("---------------------------------------------");
                         return returnString;
                     }
                     else
@@ -74,8 +76,8 @@ namespace VendingMachineLibrary
                 this.myLogger.Log("Item not found from catalog!");
             }
             return null;
-
         }
+
         // Return list of all items in vending machine
         public Dictionary<string, Item> GetItems()
         {
