@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using VendingMachineLibrary;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace VendingMachineLibraryTests
 {
@@ -15,26 +14,34 @@ namespace VendingMachineLibraryTests
         [SetUp]
         public void Setup()
         {
+            // Create new vending machine
             myMachine = new VendingMachine();
+            // Create Rye Bread and add it to vending machine
             ryeBread = new Food("Rye Bread", 5.2m, 10, 1.0f);
 
             // Place Rye Breads to vm slot A0
             myMachine.AddItem("A0", ryeBread);
         }
 
-        [Test, Order(1)]
+        [Test]
         public void CanAddItem()
         {
+            // Create set of cabbages and add to vending machine
             Food cabbage = new Food("Cabbage", 1m, 5, 3.0f);
             myMachine.AddItem("B1", cabbage);
 
+            // Get itemlist from machine
             Dictionary<string, Item> itemList = myMachine.GetItems();
 
+            // Check that previously added key B1 exists
             Assert.That(itemList, Contains.Key("B1"));
+            // Check that B1 contains Cabbage
+            Assert.That("Cabbage", Is.EqualTo(itemList["B1"].name));
+            // Also, check that there is no key B9 in itemlist (just for fun)
             Assert.AreNotEqual(itemList, Contains.Key("B9"));
         }
 
-        [Test, Order(2)]
+        [Test]
         public void CanBuyRyeBread()
         {
             // Check if you are able to get Rye Bread from A0 slot

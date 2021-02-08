@@ -12,13 +12,15 @@ namespace VendingMachineLibrary
     {
         // list for items that are loaded to vending machine
         public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
+        private MoneyHandler moneyHandler;
 
         // Logger instance, use output file "myLog.txt"
         private Logger myLogger = new Logger("myLog.txt");
 
         public VendingMachine()
         {
-
+            this.moneyHandler = new MoneyHandler();
+            this.moneyHandler.FeedMoney(100m);
         }
 
         // Method to add new items to machine
@@ -47,24 +49,32 @@ namespace VendingMachineLibrary
             if (itemList.ContainsKey(key))
             {
                 string returnString = itemList[key].name;
+                decimal price = itemList[key].price;
 
-                if (itemList[key].RemoveItem())
+                if (this.moneyHandler.moneyEntered >= price)
                 {
-                    this.myLogger.Log("Buying Item: " + itemList[key].name);
-                    Console.WriteLine("Item Bought!");
-                    return returnString;
+                    if (itemList[key].RemoveItem())
+                    {
+                        this.myLogger.Log("Buying Item: " + returnString);
+                        this.moneyHandler.RemoveMoney(price);
+                        return returnString;
+                    }
+                    else
+                    {
+                        this.myLogger.Log("Item " + key + " not found from catalog!");
+                    }
                 }
                 else
                 {
-                    this.myLogger.Log("Item " + key + " not found from catalog!");
-                    Console.WriteLine("No such item!");
-                    return null;
+                    this.myLogger.Log("You have not enough money for this item!");
                 }
             }
             else
             {
-                return null;
+                this.myLogger.Log("Item not found from catalog!");
             }
+            return null;
+
         }
         // Return list of all items in vending machine
         public Dictionary<string, Item> GetItems()
