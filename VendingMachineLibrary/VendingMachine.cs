@@ -13,8 +13,8 @@ namespace VendingMachineLibrary
         // list for items that are loaded to vending machine
         public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
 
-        // Logger instance
-        private Logger myLogger = new Logger();
+        // Logger instance, use output file "myLog.txt"
+        private Logger myLogger = new Logger("myLog.txt");
 
         public VendingMachine()
         {
@@ -56,6 +56,7 @@ namespace VendingMachineLibrary
                 }
                 else
                 {
+                    this.myLogger.Log("Item " + key + " not found from catalog!");
                     Console.WriteLine("No such item!");
                     return null;
                 }
