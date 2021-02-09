@@ -1,5 +1,6 @@
 ﻿// Author: Juha Liias 2021 
-//  Use at your own risk!
+// Use at your own risk!
+// This application is just for testing VendingMachine class library.
 
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,6 @@ namespace VendingConsole
      */
     class VendingDemo
     {
-        //enum ItemType { food, drink, weapon };
-
         private decimal playerMoney;
         VendingMachine myMachine;
 
@@ -39,6 +38,7 @@ namespace VendingConsole
             myMachine.AddItem("C3", orange);
             myMachine.AddItem("D6", ak47);
 
+            // Get some money to machine
             decimal amount = ReadDecimal("How much money you want to put to vending machine?");
             myMachine.moneyHandler.FeedMoney(amount);
 
@@ -47,7 +47,10 @@ namespace VendingConsole
             // Main loop, "Q" to exit
             while (true)
             {
+                // Show available items in machine
                 ShowItems(myMachine);
+
+                // Instructions for user
                 Console.WriteLine("Money in Vending Machine: " + myMachine.moneyHandler.moneyEntered);
                 Console.WriteLine("\nEnter item position or add item:\n" +
                     "  \"F\" to add food\n" +
@@ -56,6 +59,12 @@ namespace VendingConsole
                     "or \"Q\" to quit:");
                 string input = Console.ReadLine().ToUpper();
 
+                // Check user input:
+                //   Q: Quit
+                //   F: Create food item
+                //   D: Create drink item
+                //   W: Create weapon item
+                //   other inputs are intepreted as slot selection
                 if (input == "Q")
                 {
                     Console.WriteLine("Exiting...Bye!");
@@ -68,6 +77,7 @@ namespace VendingConsole
                 }
                 else
                 {
+                    // Try to buy item from slot given by user.
                     string itemBought = myMachine.BuyItem(input);
                     if (itemBought != null)
                     {
@@ -108,8 +118,10 @@ namespace VendingConsole
             }
         }
 
+        // Method for adding new item
         public void AddNewItem(string itemType)
         {
+            // Get info on new item: position, name, price
             Console.WriteLine("Enter item position:");
             string thisPos = Console.ReadLine();
             Console.WriteLine("Enter item name:");
@@ -117,6 +129,10 @@ namespace VendingConsole
             decimal thisPrice = ReadDecimal("Enter item price:");
             int thisCount = ReadInt("Enter number of items:");
             
+            // Get input for additional properties values
+            // Food: weight
+            // Drink: healing
+            // Weapon: damage
             switch (itemType)
             {
                 case "F":
@@ -141,6 +157,12 @@ namespace VendingConsole
             }
         }
 
+        #region Input validators
+        // Temporary solution: planning to combine separate decimal, 
+        // int and float methods with single generic method. Need to 
+        // study how to make <T>.TryParse() working...
+
+        // Method for getting valid input for decimal
         public decimal ReadDecimal(string myString) 
         {
             while (true)
@@ -156,6 +178,8 @@ namespace VendingConsole
             }
         }
 
+        // Method for getting valid input for integer
+        // Temporary solution: planning to combine all 3 Read* methods
         public int ReadInt(string myString)
         {
             while (true)
@@ -171,6 +195,8 @@ namespace VendingConsole
             }
         }
 
+        // Method for getting valid input for float
+        // Temporary solution: planning to combine all 3 Read* methods
         public float ReadFloat(string myString)
         {
             while (true)
@@ -205,6 +231,6 @@ namespace VendingConsole
         //        Console.WriteLine("Please give a number!");
         //    }
         //}
-
+        #endregion
     }
 }
