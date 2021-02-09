@@ -15,6 +15,7 @@ namespace VendingMachineLibrary
 
         public VendingMachine()
         {
+            this.myLogger.LogInformation("New vending machine created!");
             this.moneyHandler = new MoneyHandler();
         }
 
@@ -26,11 +27,12 @@ namespace VendingMachineLibrary
             // If key already exists, replace slot content with newItem
             if (itemList.ContainsKey(key))
             {
-                this.myLogger.Log("Replacing slot " + key + " content!");
+                this.myLogger.LogWarning("Replacing slot " + key + " content!");
                 itemList[key] = newItem;
             }
             else
             {
+                this.myLogger.LogInformation("Adding new item " + newItem.name + " to slot " + key);
                 itemList.Add(key, newItem);
             }
         }
@@ -50,25 +52,25 @@ namespace VendingMachineLibrary
                 {
                     if (itemList[key].RemoveItem())
                     {
-                        this.myLogger.Log("---------------------------------------------");
-                        this.myLogger.Log("Buying Item: " + returnString);
+                        this.myLogger.LogInformation("---------------------------------------------");
+                        this.myLogger.LogInformation("Buying Item: " + returnString);
                         this.moneyHandler.RemoveMoney(price);
-                        this.myLogger.Log("---------------------------------------------");
+                        this.myLogger.LogInformation("---------------------------------------------");
                         return returnString;
                     }
                     else
                     {
-                        this.myLogger.Log("Item " + key + " not found from catalog!");
+                        this.myLogger.LogWarning("Item " + key + " not found from catalog!");
                     }
                 }
                 else
                 {
-                    this.myLogger.Log("You have not enough money for this item!");
+                    this.myLogger.LogWarning("You have not enough money for this item!");
                 }
             }
             else
             {
-                this.myLogger.Log("Item not found from catalog!");
+                this.myLogger.LogWarning("Item not found from catalog!");
             }
             return null;
         }

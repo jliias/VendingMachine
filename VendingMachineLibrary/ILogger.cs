@@ -4,7 +4,8 @@ namespace VendingMachineLibrary
 {
     interface ILogger
     {
-        void Log(string msg);
-        //void LoggerType()
+        void LogInformation(string msg);
+        void LogWarning(string msg);
+        void LogError(string msg);
     }
 }

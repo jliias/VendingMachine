@@ -17,7 +17,7 @@
         public void FeedMoney(decimal amount)
         {
             moneyEntered += amount;
-            myLogger.Log("Added " + amount + " EUR!");
+            myLogger.LogInformation("Added " + amount + " EUR!");
         }
 
         // Method for removing money
@@ -25,10 +25,10 @@
         {
             if (this.moneyEntered > amount)
             {
-                myLogger.Log("You have " + moneyEntered + " EUR before buying.");
+                myLogger.LogInformation("You have " + moneyEntered + " EUR before buying.");
                 this.moneyEntered -= amount;
-                myLogger.Log("Removed " + amount + " EUR!");
-                myLogger.Log("You have " + moneyEntered + " EUR left after buying.");
+                myLogger.LogInformation("Removed " + amount + " EUR!");
+                myLogger.LogInformation("You have " + moneyEntered + " EUR left after buying.");
                 return true;
             }
             else {
