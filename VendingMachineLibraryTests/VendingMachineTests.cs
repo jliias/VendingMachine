@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace VendingMachineLibraryTests
 {
+    /* 
+     Class implementing VendingMachineLibrary unit tests
+     */
+
 
     [TestFixture]
     public class VendingMachineTests
@@ -66,10 +70,12 @@ namespace VendingMachineLibraryTests
         [Test]
         public void TryBuyAffordableItem()
         {
-            myMachine.moneyHandler.FeedMoney(1200m);
             // Create AK47 item and add it to vending machine catalog
             Weapon AK47 = new Weapon("AK47", 1200m, 1, 10f);
             myMachine.AddItem("P6", AK47);
+
+            // Add some more money to vending machine
+            myMachine.moneyHandler.FeedMoney(1200m);
 
             Assert.That("AK47", Is.EqualTo(myMachine.BuyItem("P6")));
         }

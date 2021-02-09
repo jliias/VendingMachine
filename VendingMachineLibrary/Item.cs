@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VendingMachineLibrary
+﻿namespace VendingMachineLibrary
 {
     public abstract class Item
     {
@@ -15,16 +13,20 @@ namespace VendingMachineLibrary
             this.remaining = remaining;
         }
 
+        // Returns item name
         public string GetName()
         {
             return this.name.ToString();
         }
 
+        // Returns item price
         public decimal GetPrice()
         {
             return this.price;
         }
 
+        // Subtracts the number of items by 1 (if remaining > 0)
+        // Returns true if successfull
         public bool RemoveItem()
         {
             if (this.remaining > 0)

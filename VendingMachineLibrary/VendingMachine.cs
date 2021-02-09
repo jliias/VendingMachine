@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace VendingMachineLibrary
 {
@@ -20,7 +16,6 @@ namespace VendingMachineLibrary
         public VendingMachine()
         {
             this.moneyHandler = new MoneyHandler();
-            this.moneyHandler.FeedMoney(100m);
         }
 
         // Method to add new items to machine

@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace VendingMachineLibrary
+﻿namespace VendingMachineLibrary
 {
     public class Drink : Item
     {
+        // Drink class specific variable
         private float healAmount;
 
         public Drink(string name, decimal price, int remaining, float healAmount) : base(name, price, remaining)

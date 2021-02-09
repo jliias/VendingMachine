@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VendingMachineLibrary
 {
@@ -31,8 +27,7 @@ namespace VendingMachineLibrary
             // Build output string
             string outLine = $"[{thisTimeString}] : {msg}";
 
-            //Console.WriteLine(outLine);
-
+            // Write output string to the specified file
             try
             {
                 using (StreamWriter streamWriter = new StreamWriter(logFileName, true))
