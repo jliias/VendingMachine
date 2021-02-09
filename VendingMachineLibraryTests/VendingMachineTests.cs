@@ -1,3 +1,6 @@
+// Author: Juha Liias 2021 
+//  Use at your own risk!
+
 using NUnit.Framework;
 using VendingMachineLibrary;
 using System.Collections.Generic;

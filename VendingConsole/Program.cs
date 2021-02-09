@@ -1,6 +1,5 @@
-﻿/* 
-Start Vending Machine demo application
-*/
+﻿// Author: Juha Liias 2021 
+//  Use at your own risk!
 
 namespace VendingConsole
 {

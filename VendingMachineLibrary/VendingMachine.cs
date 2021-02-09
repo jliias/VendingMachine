@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Author: Juha Liias 2021 
+//  Use at your own risk!
+
+using System.Collections.Generic;
 
 namespace VendingMachineLibrary
 {

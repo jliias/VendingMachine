@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Author: Juha Liias 2021 
+//  Use at your own risk!
+
+using System;
 using System.IO;
 
 namespace VendingMachineLibrary

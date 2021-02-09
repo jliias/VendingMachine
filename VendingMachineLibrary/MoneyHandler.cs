@@ -1,4 +1,7 @@
-﻿namespace VendingMachineLibrary
+﻿// Author: Juha Liias 2021 
+//  Use at your own risk!
+
+namespace VendingMachineLibrary
 {
 
     public class MoneyHandler
