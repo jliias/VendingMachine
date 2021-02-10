@@ -20,7 +20,7 @@ namespace VendingMachineLibrary
         public void FeedMoney(decimal amount)
         {
             moneyEntered += amount;
-            myLogger.LogInformation("Added " + amount + " EUR!");
+            myLogger.Log(2, "Added " + amount + " EUR!");
         }
 
         // Method for removing money
@@ -28,10 +28,10 @@ namespace VendingMachineLibrary
         {
             if (this.moneyEntered > amount)
             {
-                myLogger.LogInformation("You have " + moneyEntered + " EUR before buying.");
+                myLogger.Log(2, "You have " + moneyEntered + " EUR before buying.");
                 this.moneyEntered -= amount;
-                myLogger.LogInformation("Removed " + amount + " EUR!");
-                myLogger.LogInformation("You have " + moneyEntered + " EUR left after buying.");
+                myLogger.Log(2, "Removed " + amount + " EUR!");
+                myLogger.Log(2, "You have " + moneyEntered + " EUR left after buying.");
                 return true;
             }
             else {

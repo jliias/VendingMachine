@@ -1,5 +1,5 @@
 ﻿// Author: Juha Liias 2021 
-//  Use at your own risk!
+// Use at your own risk!
 
 namespace VendingMachineLibrary
 {

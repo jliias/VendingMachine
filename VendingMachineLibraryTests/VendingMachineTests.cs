@@ -5,13 +5,10 @@ using NUnit.Framework;
 using VendingMachineLibrary;
 using System.Collections.Generic;
 
+// Class implementing VendingMachineLibrary unit tests
+
 namespace VendingMachineLibraryTests
 {
-    /* 
-     Class implementing VendingMachineLibrary unit tests
-     */
-
-
     [TestFixture]
     public class VendingMachineTests
     {
@@ -101,7 +98,5 @@ namespace VendingMachineLibraryTests
 
             Assert.That(moneyBefore - 50m, Is.EqualTo(myMachine.moneyHandler.moneyEntered));
         }
-
-
     }
 }

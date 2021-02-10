@@ -6,53 +6,70 @@ using System.IO;
 
 namespace VendingMachineLibrary
 {
+    // Logger class implementation
     public class Logger : ILogger
     {
-
         private string logFileName;
 
+        // Constructor with no parameters:
+        // Set output file name as default (log.txt)
         public Logger()
         {
             this.logFileName = "log.txt";
         }
 
+        // Constructor withn logFile Name
         public Logger(string logFileName)
         {
             this.logFileName = logFileName;
         }
 
-        public void LogInformation(string msg)
+        public void Log(int level, string msg)
         {
+            // Select identifier based on severity
+            string logLevelString = "";
+            switch (level)
+            {
+                case 0:
+                    logLevelString = "TRACE";
+                    break;
+                case 1:
+                    logLevelString = "DEBUG";
+                    break;
+                case 2:
+                    logLevelString = "INFO";
+                    break;
+                case 3:
+                    logLevelString = "WARNING";
+                    break;
+                case 4:
+                    logLevelString = "ERROR";
+                    break;
+                case 5:
+                    logLevelString = "CRITICAL";
+                    break;
+                default:
+                    logLevelString = "UNKNOWN";
+                    break;
+            }
+
             // Build output string
-            string outLine = $"INFO [{GetDateString()}] : {msg}";
+            string outLine = $"{logLevelString} [{GetDateString()}] : {msg}";
             WriteToLogFile(outLine);
         }
 
-        public void LogWarning(string msg)
-        {
-            // Build output string
-            string outLine = $"WARNING [{GetDateString()}] : {msg}";
-            WriteToLogFile(outLine);
-        }
-
-        public void LogError(string msg)
-        {
-            // Build output string
-            string outLine = $"ERROR [{GetDateString()}] : {msg}";
-            WriteToLogFile(outLine);
-        }
-
+        // Timestamp for log line
         private string GetDateString()
         {
-            // Timestamp for log
             DateTime timeNow = DateTime.Now;
             string timeNowString = timeNow.ToString("dd/MM/yyyy HH:mm:ss");
             return timeNowString;
         }
 
+        // Write output string to the specified file
+        // should be found under bin/debug directory
         private void WriteToLogFile(string outString)
         {
-            // Write output string to the specified file
             try
             {
                 using (StreamWriter streamWriter = new StreamWriter(logFileName, true))

@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 namespace VendingMachineLibrary
 {
-    //public enum ItemType { food, drink, weapon };
-
     public class VendingMachine
     {
         // list for items that are loaded to vending machine
@@ -18,7 +16,7 @@ namespace VendingMachineLibrary
 
         public VendingMachine()
         {
-            this.myLogger.LogInformation("New vending machine created!");
+            this.myLogger.Log(2, "New vending machine created!");
             this.moneyHandler = new MoneyHandler();
         }
 
@@ -30,12 +28,12 @@ namespace VendingMachineLibrary
             // If key already exists, replace slot content with newItem
             if (itemList.ContainsKey(key))
             {
-                this.myLogger.LogWarning("Replacing slot " + key + " content!");
+                this.myLogger.Log(3, "Replacing slot " + key + " content!");
                 itemList[key] = newItem;
             }
             else
             {
-                this.myLogger.LogInformation("Adding new item " + newItem.name + " to slot " + key);
+                this.myLogger.Log(2, "Adding new item " + newItem.name + " to slot " + key);
                 itemList.Add(key, newItem);
             }
         }
@@ -55,25 +53,25 @@ namespace VendingMachineLibrary
                 {
                     if (itemList[key].RemoveItem())
                     {
-                        this.myLogger.LogInformation("---------------------------------------------");
-                        this.myLogger.LogInformation("Buying Item: " + returnString);
+                        this.myLogger.Log(2, "---------------------------------------------");
+                        this.myLogger.Log(2, "Buying Item: " + returnString);
                         this.moneyHandler.RemoveMoney(price);
-                        this.myLogger.LogInformation("---------------------------------------------");
+                        this.myLogger.Log(2,"---------------------------------------------");
                         return returnString;
                     }
                     else
                     {
-                        this.myLogger.LogWarning("Item " + key + " not found from catalog!");
+                        this.myLogger.Log(3, "Item " + key + " not found from catalog!");
                     }
                 }
                 else
                 {
-                    this.myLogger.LogWarning("You have not enough money for this item!");
+                    this.myLogger.Log(3, "You have not enough money for this item!");
                 }
             }
             else
             {
-                this.myLogger.LogWarning("Item not found from catalog!");
+                this.myLogger.Log(3, "Item not found from catalog!");
             }
             return null;
         }
