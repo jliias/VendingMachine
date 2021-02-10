@@ -14,7 +14,6 @@ namespace VendingConsole
      */
     class VendingDemo
     {
-        private decimal playerMoney;
         VendingMachine myMachine;
 
         public void Menu()
@@ -52,11 +51,12 @@ namespace VendingConsole
 
                 // Instructions for user
                 Console.WriteLine("Money in Vending Machine: " + myMachine.moneyHandler.moneyEntered);
-                Console.WriteLine("\nEnter item position or add item:\n" +
+                Console.WriteLine("\nEnter item position or:\n" +
                     "  \"F\" to add food\n" +
                     "  \"D\" to add drink\n" +
                     "  \"W\" to add weapon\n" +
-                    "or \"Q\" to quit:");
+                    "  \"M\" to add money\n" +
+                    "  \"Q\" to quit.");
                 string input = Console.ReadLine().ToUpper();
 
                 // Check user input:
@@ -70,10 +70,16 @@ namespace VendingConsole
                     Console.WriteLine("Exiting...Bye!");
                     break;
                 }
+                else if (input == "M")
+                {
+                    Console.Clear();
+                    decimal newMoney = ReadDecimal("How much you want to add money?");
+                    myMachine.moneyHandler.FeedMoney(newMoney);
+                }
                 else if ((input == "F") || (input == "D") || (input == "W"))
                 {
                     Console.Clear();
-                    Console.WriteLine("Creating new item type " + 
+                    Console.WriteLine("Creating new item type " +
                         (input == "F" ? "Food" : input == "D" ? "Drink" : "Weapon"));
                     AddNewItem(input);
                 }
@@ -130,7 +136,7 @@ namespace VendingConsole
             string thisName = Console.ReadLine();
             decimal thisPrice = ReadDecimal("Enter item price:");
             int thisCount = ReadInt("Enter number of items:");
-            
+
             // Get input for additional properties values
             // Food: weight
             // Drink: healing
@@ -165,7 +171,7 @@ namespace VendingConsole
         // study how to make <T>.TryParse() working...
 
         // Method for getting valid input for decimal
-        public decimal ReadDecimal(string myString) 
+        public decimal ReadDecimal(string myString)
         {
             while (true)
             {
