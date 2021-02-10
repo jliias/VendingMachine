@@ -6,8 +6,6 @@
 - Handles money using MoneyHandler class
 - Uses Logger to log actions (information, warning, error)
 
-**Methods:**
-
 Add item to Catalog:  *public void AddItem(string key, Item newItem)*
 
 Buy item:  *public string BuyItem(string key)*
@@ -17,8 +15,6 @@ Get catalog containing all items:  *public Dictionary<string, Item> GetItems()*
 
 ## Abstract class: Item
 - Abstract class containing basic properties and methods for any item used in Vending Machine
-
-**Methods**
 
 Get item name:  *public string GetName()*
 
@@ -44,9 +40,6 @@ Remove one piece of items:  *public bool RemoveItem()*
 ## Class: MoneyHandler
 - Keeps record of money in Vending Machine
 
-
-**Methods**
-
 Feed money to machine:  *public void FeedMoney(decimal amount)*
 
 Remove money from machine:  *public bool RemoveMoney(decimal amount)*
@@ -57,11 +50,14 @@ How much money is left:  *public decimal moneyEntered { get; private set; }*
 ## Interface: ILogger ##
 - Interface for Logger class(es)
 
-**Methods**
-
 *void Log(int level, string msg);*
 
 
-
 ## Class: Logger
-implements ILogger interface
+- implements ILogger interface
+
+Two alternatives for Log Method:
+- *public void Log(string msg)*
+- *public void Log(int level, string msg)*
+
+
