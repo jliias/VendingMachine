@@ -28,6 +28,12 @@ namespace VendingMachineLibrary
             return this.price;
         }
 
+        // Returns remaining items
+        public decimal GetRemaining()
+        {
+            return this.remaining;
+        }
+
         // Subtracts the number of items by 1 (if remaining > 0)
         // Returns true if successfull
         public bool RemoveItem()
