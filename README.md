@@ -63,3 +63,15 @@ Severity levels:
 5. CRITICAL
 
 
+# Examples
+
+Create instance with 8 pcs of ”water” items, price 3€ each and with healing power of 12: *Drink water = new Drink("Tap water", 3, 8, 12f);*
+
+
+Add Drink type item "water" to machine slot C3: *myMachine.AddItem("C3", water);*
+
+
+
+
+
+
