@@ -73,6 +73,8 @@ namespace VendingConsole
                 else if ((input == "F") || (input == "D") || (input == "W"))
                 {
                     Console.Clear();
+                    Console.WriteLine("Creating new item type " + 
+                        (input == "F" ? "Food" : input == "D" ? "Drink" : "Weapon"));
                     AddNewItem(input);
                 }
                 else

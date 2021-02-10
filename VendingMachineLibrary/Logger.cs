@@ -24,6 +24,15 @@ namespace VendingMachineLibrary
             this.logFileName = logFileName;
         }
 
+        // Log without severity level information
+        public void Log(string msg)
+        {
+            // Build output string
+            string outLine = $"MSG [{GetDateString()}] : {msg}";
+            WriteToLogFile(outLine);
+        }
+
+        // Log with severity information
         public void Log(int level, string msg)
         {
             // Select identifier based on severity

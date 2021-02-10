@@ -9,6 +9,7 @@ namespace VendingMachineLibrary
     {
         // list for items that are loaded to vending machine
         public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
+ 
         public MoneyHandler moneyHandler { get; }
 
         // Logger instance, use output file "myLog.txt"
