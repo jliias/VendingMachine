@@ -71,7 +71,7 @@ Create instance with 8 pcs of ”water” items, price 3€ each and with healin
 Add Drink type item "water" to machine slot C3: *myMachine.AddItem("C3", water);*
 
 
-
+Vending Machine can be refilled on any time of operation. **Note!** One slot can contain one kind of items! If slot is tried to fill with other item that is already contains, slot is emptied and new items are filled in. 
 
 
 
