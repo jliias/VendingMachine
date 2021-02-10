@@ -1,5 +1,12 @@
 # VendingMachine
 
+**VendingMachineLibrary** : class library of VendingMachine
+
+**VendingMachineLibraryTests** : unit tests for VendingMachineLibrary
+
+**VendingConsole** : Simple example app using VendingMachineLibrary (not polished, just for testing purposes)
+
+
 ## Class: VendingMachine
 Adds Items to the dictionary. Updates inventory when items are added or bought. Handles money using MoneyHandler class. Uses Logger to log actions (information, warning, error).
 
