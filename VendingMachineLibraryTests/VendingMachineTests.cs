@@ -81,8 +81,9 @@ namespace VendingMachineLibraryTests
         [Test]
         public void CannotBuyRyeBreadFromB0()
         {
+            string item = "Rye Bread";
             // Check if you are able to get Rye Bread from B0 slot (expected result=false)
-            Assert.AreNotEqual("Rye Bread", myMachine.BuyItem("B0"));
+            Assert.That(item, Is.Not.EqualTo(myMachine.BuyItem("B0")));
         }
 
 
