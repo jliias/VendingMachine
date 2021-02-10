@@ -39,7 +39,7 @@ Keeps record of money in Vending Machine
 Public methods:
 - Feed money to machine:  *public void FeedMoney(decimal amount)*
 - Remove money from machine:  *public bool RemoveMoney(decimal amount)*
-- How much money is left:  *public decimal moneyEntered { get; private set; }* 
+- How much money is left:  *public decimal moneyEntered { get; private set; }*
 
 ## Interface: ILogger ##
 Interface for Logger class(es)
@@ -71,7 +71,6 @@ Create instance with 8 pcs of ”water” items, price 3€ each and with healin
 Add Drink type item "water" to machine slot C3: *myMachine.AddItem("C3", water);*
 
 
-Vending Machine can be refilled on any time of operation. **Note!** One slot can contain one kind of items! If slot is tried to fill with other item that is already contains, slot is emptied and new items are filled in. 
+Vending Machine can be refilled on any time of operation. **Note!** One slot can contain one kind of items! If slot is tried to fill with other item that is already contains, slot is emptied and new items are filled in.
 
-
-
+v1.0 is first release for review. 
