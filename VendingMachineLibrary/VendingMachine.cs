@@ -8,7 +8,7 @@ namespace VendingMachineLibrary
     public class VendingMachine
     {
         // list for items that are loaded to vending machine
-        public Dictionary<string, Item> itemList = new Dictionary<string, Item>();
+        private Dictionary<string, Item> itemList = new Dictionary<string, Item>();
  
         public MoneyHandler moneyHandler { get; }
 
